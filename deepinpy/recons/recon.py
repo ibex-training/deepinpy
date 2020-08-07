@@ -122,7 +122,7 @@ class Recon(pl.LightningModule):
         except KeyError:
             num_cg = 0
 
-        if (self.current_epoch % self.hparams.save_every_N_epochs == 0) or (self.current_epoch == self.hparams.num_epochs - 1):
+        if self.logger and (self.current_epoch % self.hparams.save_every_N_epochs == 0 or self.current_epoch == self.hparams.num_epochs - 1):
             _b = inp.shape[0]
             if _b == 1 and idx == 0:
                     _idx = 0
