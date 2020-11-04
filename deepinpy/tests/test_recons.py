@@ -47,6 +47,8 @@ args.num_epochs = 2
 args.lr_scheduler = -1
 args.checkpoint_init = None
 args.num_spatial_dimensions = 2
+args.num_accumulate = 1
+args.clip_grad = 0
 
 # try to make a checkpoint logger
 checkpoint_callback = ModelCheckpoint('/dev/null', 'epoch', save_top_k=-1, mode='max', verbose=False)
@@ -60,7 +62,7 @@ class TestRecon(unittest.TestCase):
 
             print('  CPU:')
             M = recon(args)
-            trainer = Trainer(max_epochs=args.num_epochs, gpus=None, logger=False)
+            trainer = Trainer(max_epochs=args.num_epochs, gpus=None, logger=False, accumulate_grad_batches=args.num_accumulate, progress_bar_refresh_rate=1, gradient_clip_val=args.clip_grad)
             trainer.fit(M)
 
             if torch.cuda.device_count() > 0:
