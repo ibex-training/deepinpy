@@ -5,6 +5,16 @@ This project is a __Work In Progress!__ We are looking for volunteers! Please se
 
 [Getting Started](docs/getting_started.md)
 
+## Create a Conda evironment
+```bash
+./bin/create-conda-env.sh
+```
+
+## Submit job via Slurm
+```bash
+sbatch ./bin/example-slurm-script.sbatch
+```
+
 ## Example Usage:
 - Example for running a single experiment:
 ```bash
